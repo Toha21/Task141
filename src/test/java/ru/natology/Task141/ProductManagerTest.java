@@ -105,5 +105,27 @@ class ProductManagerTest {
         Assertions.assertArrayEquals(expected, actual);
 
     }
+    @Test
+    public void addingAnExistingProductTest() {
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+
+        Assertions.assertThrows(AlreadyExistsException.class,
+                () -> repo.add(smartphone1));
+    }
+    @Test
+    public void addProductTest() {
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+
+        Product[] expected = {smartphone1, smartphone2, smartphone3};
+        Product[] actual = repo.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
 
 }

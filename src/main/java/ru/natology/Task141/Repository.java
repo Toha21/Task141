@@ -5,6 +5,12 @@ public class Repository {
     public Product[] products = new Product[0];
 
     public void add(Product product) {
+        for (Product thisProduct : products){
+            if (product.getId() == thisProduct.getId()){
+                throw new AlreadyExistsException("Product с таким id уже существует" + product.getId());
+            }
+
+        }
         Product[] tmp = new Product[products.length + 1];
         for (int i = 0; i < products.length; i++) {
             tmp[i] = products[i];
